@@ -1,0 +1,399 @@
+/* --- VARIABLES & THEMES --- */
+/* :root defines the default Light Theme */
+:root {
+    /* Base Font & Sizing */
+    --font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-family-headings: 'Montserrat', sans-serif;
+    --font-size-base: 16px;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+    --transition-speed: 200ms;
+    --transition-fast: 150ms;
+
+    /* Light Theme Palette */
+    --app-bg: #F0F2F5;
+    --card-bg: #FFFFFF;
+    --card-border: #D9D9D9;
+    --text-primary: #1F2937;
+    --text-secondary: #4B5563;
+    --text-tertiary: #9CA3AF;
+    --accent-primary: #4A90E2;
+    --accent-primary-hover: #357ABD;
+    --accent-primary-text: #FFFFFF;
+    --accent-secondary: #F4F5F7;
+    --accent-secondary-hover: #E9ECEF;
+    
+    /* Button Brand Colors */
+    --btn-kb-bg: #7092bf;
+    --btn-kb-bg-hover: #5a7fa9;
+    --btn-ad-bg: #0db0ab;
+    --btn-ad-bg-hover: #0a8d88;
+
+    --success: #28A745;
+    --danger: #DC3545;
+    --warning: #FFC107;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --tooltip-bg: #1F2937;
+    --tooltip-text: #FFFFFF;
+    --gradient-bg: linear-gradient(135deg, var(--app-bg) 0%, #E9ECEF 100%);
+}
+
+/* --- Dark Theme --- */
+.theme-dark {
+    --app-bg: #0D1117;
+    --card-bg: #161B22;
+    --card-border: #30363D;
+    --text-primary: #C9D1D9;
+    --text-secondary: #8B949E;
+    --text-tertiary: #586069;
+    --accent-primary: #58A6FF;
+    --accent-primary-hover: #79C0FF;
+    --accent-primary-text: #0D1117;
+    --accent-secondary: #21262D;
+    --accent-secondary-hover: #30363D;
+    --success: #3FB950;
+    --danger: #F85149;
+    --warning: #D29922;
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --tooltip-bg: #F0F2F5;
+    --tooltip-text: #161B22;
+    --gradient-bg: linear-gradient(135deg, var(--app-bg) 0%, #161B22 100%);
+}
+
+/* --- Solarized Light Theme (Eye-Resting) --- */
+.theme-solarized {
+    --app-bg: #fdf6e3;
+    --card-bg: #eee8d5;
+    --card-border: #93a1a1;
+    --text-primary: #586e75;
+    --text-secondary: #657b83;
+    --text-tertiary: #839496;
+    --accent-primary: #268bd2;
+    --accent-primary-hover: #0766a2;
+    --accent-primary-text: #fdf6e3;
+    --accent-secondary: #f5f0df;
+    --accent-secondary-hover: #e6e0cf;
+    --btn-kb-bg: #2aa198; /* Cyan */
+    --btn-kb-bg-hover: #1f7c75;
+    --btn-ad-bg: #6c71c4; /* Violet */
+    --btn-ad-bg-hover: #55599b;
+    --success: #859900;
+    --danger: #dc322f;
+    --warning: #b58900;
+    --shadow-color: rgba(88, 110, 117, 0.2);
+    --tooltip-bg: #586e75;
+    --tooltip-text: #fdf6e3;
+    --gradient-bg: linear-gradient(135deg, var(--app-bg) 0%, #eee8d5 100%);
+}
+
+/* --- Nord Theme (Peaceful Dark) --- */
+.theme-nord {
+    --app-bg: #2E3440;
+    --card-bg: #3B4252;
+    --card-border: #4C566A;
+    --text-primary: #ECEFF4;
+    --text-secondary: #D8DEE9;
+    --text-tertiary: #a0a8b7;
+    --accent-primary: #88C0D0;
+    --accent-primary-hover: #96c9d8;
+    --accent-primary-text: #2E3440;
+    --accent-secondary: #434C5E;
+    --accent-secondary-hover: #4C566A;
+    --btn-kb-bg: #5E81AC; /* Blue */
+    --btn-kb-bg-hover: #527196;
+    --btn-ad-bg: #81A1C1; /* Lighter Blue */
+    --btn-ad-bg-hover: #718fa8;
+    --success: #A3BE8C;
+    --danger: #BF616A;
+    --warning: #EBCB8B;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --tooltip-bg: #ECEFF4;
+    --tooltip-text: #2E3440;
+    --gradient-bg: linear-gradient(135deg, var(--app-bg) 0%, #3B4252 100%);
+}
+
+/* --- Oceanic Theme (Interactive Light) --- */
+.theme-oceanic {
+    --app-bg: #f0f7ff;
+    --card-bg: #ffffff;
+    --card-border: #cdd9e5;
+    --text-primary: #0A2540;
+    --text-secondary: #3c5b7c;
+    --text-tertiary: #6b84a3;
+    --accent-primary: #007BFF;
+    --accent-primary-hover: #0069d9;
+    --accent-primary-text: #ffffff;
+    --accent-secondary: #e9f2ff;
+    --accent-secondary-hover: #dce9f9;
+    --btn-kb-bg: #17A2B8; /* Teal */
+    --btn-kb-bg-hover: #138496;
+    --btn-ad-bg: #007BFF; /* Blue */
+    --btn-ad-bg-hover: #0069d9;
+    --success: #28a745;
+    --danger: #dc3545;
+    --warning: #ffc107;
+    --shadow-color: rgba(10, 37, 64, 0.1);
+    --tooltip-bg: #0A2540;
+    --tooltip-text: #ffffff;
+    --gradient-bg: linear-gradient(135deg, var(--app-bg) 0%, #e9f2ff 100%);
+}
+
+/* --- Monokai Theme (High-Contrast Dark) --- */
+.theme-monokai {
+    --app-bg: #22231D;
+    --card-bg: #272822;
+    --card-border: #49483E;
+    --text-primary: #F8F8F2;
+    --text-secondary: #a0a097;
+    --text-tertiary: #75715E;
+    --accent-primary: #FD971F; /* Orange */
+    --accent-primary-hover: #e6881c;
+    --accent-primary-text: #272822;
+    --accent-secondary: #3e3d32;
+    --accent-secondary-hover: #49483E;
+    --btn-kb-bg: #A6E22E; /* Green */
+    --btn-kb-bg-hover: #90c228;
+    --btn-ad-bg: #66D9EF; /* Cyan */
+    --btn-ad-bg-hover: #58bacd;
+    --success: #A6E22E;
+    --danger: #F92672; /* Pink */
+    --warning: #E6DB74; /* Yellow */
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --tooltip-bg: #F8F8F2;
+    --tooltip-text: #272822;
+    --gradient-bg: linear-gradient(135deg, var(--app-bg) 0%, #272822 100%);
+}
+
+/* --- Sepia Theme (Paper-like, very eye-friendly) --- */
+.theme-sepia {
+    --app-bg: #f4f1ea;
+    --card-bg: #faf8f1;
+    --card-border: #d4c4a8;
+    --text-primary: #5c4a37;
+    --text-secondary: #6b5d4f;
+    --text-tertiary: #8d7a6b;
+    --accent-primary: #8b6914;
+    --accent-primary-hover: #704d0a;
+    --accent-primary-text: #faf8f1;
+    --accent-secondary: #f0ebe0;
+    --accent-secondary-hover: #e8dfd0;
+    --btn-kb-bg: #a0522d;
+    --btn-kb-bg-hover: #8b4513;
+    --btn-ad-bg: #cd853f;
+    --btn-ad-bg-hover: #b8742f;
+    --success: #6b8e23;
+    --danger: #a0522d;
+    --warning: #daa520;
+    --shadow-color: rgba(92, 74, 55, 0.15);
+    --tooltip-bg: #5c4a37;
+    --tooltip-text: #faf8f1;
+    --gradient-bg: linear-gradient(135deg, var(--app-bg) 0%, #f0ebe0 100%);
+}
+
+/* --- Warm Gray Theme (Reduced blue light) --- */
+.theme-warm-gray {
+    --app-bg: #f7f5f3;
+    --card-bg: #fefcfa;
+    --card-border: #e1ddd9;
+    --text-primary: #3c3635;
+    --text-secondary: #5d5654;
+    --text-tertiary: #8b8680;
+    --accent-primary: #c4a484;
+    --accent-primary-hover: #b8956e;
+    --accent-primary-text: #3c3635;
+    --accent-secondary: #f2efeb;
+    --accent-secondary-hover: #ebe6e0;
+    --btn-kb-bg: #d2b48c;
+    --btn-kb-bg-hover: #c8a882;
+    --btn-ad-bg: #bc9a6a;
+    --btn-ad-bg-hover: #a8875c;
+    --success: #8fbc8f;
+    --danger: #cd5c5c;
+    --warning: #daa520;
+    --shadow-color: rgba(60, 54, 53, 0.1);
+    --tooltip-bg: #3c3635;
+    --tooltip-text: #fefcfa;
+    --gradient-bg: linear-gradient(135deg, var(--app-bg) 0%, #f2efeb 100%);
+}
+
+/* --- GitHub Theme (Familiar to developers) --- */
+.theme-github {
+    --app-bg: #fafbfc;
+    --card-bg: #ffffff;
+    --card-border: #e1e4e8;
+    --text-primary: #24292e;
+    --text-secondary: #586069;
+    --text-tertiary: #959da5;
+    --accent-primary: #0366d6;
+    --accent-primary-hover: #0256cc;
+    --accent-primary-text: #ffffff;
+    --accent-secondary: #f6f8fa;
+    --accent-secondary-hover: #edeff2;
+    --btn-kb-bg: #28a745;
+    --btn-kb-bg-hover: #269040;
+    --btn-ad-bg: #0366d6;
+    --btn-ad-bg-hover: #0256cc;
+    --success: #28a745;
+    --danger: #d73a49;
+    --warning: #f66a0a;
+    --shadow-color: rgba(27, 31, 35, 0.1);
+    --tooltip-bg: #24292e;
+    --tooltip-text: #ffffff;
+    --gradient-bg: linear-gradient(135deg, var(--app-bg) 0%, #f6f8fa 100%);
+}
+
+/* --- Dracula Theme (Popular dark theme) --- */
+.theme-dracula {
+    --app-bg: #282a36;
+    --card-bg: #44475a;
+    --card-border: #6272a4;
+    --text-primary: #f8f8f2;
+    --text-secondary: #e6e6e6;
+    --text-tertiary: #94a3a5;
+    --accent-primary: #bd93f9;
+    --accent-primary-hover: #a678e8;
+    --accent-primary-text: #282a36;
+    --accent-secondary: #3f4253;
+    --accent-secondary-hover: #4d5066;
+    --btn-kb-bg: #50fa7b;
+    --btn-kb-bg-hover: #45e070;
+    --btn-ad-bg: #8be9fd;
+    --btn-ad-bg-hover: #7dd3fc;
+    --success: #50fa7b;
+    --danger: #ff5555;
+    --warning: #f1fa8c;
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --tooltip-bg: #f8f8f2;
+    --tooltip-text: #282a36;
+    --gradient-bg: linear-gradient(135deg, var(--app-bg) 0%, #44475a 100%);
+}
+
+/* --- One Dark Theme (Atom editor) --- */
+.theme-one-dark {
+    --app-bg: #21252b;
+    --card-bg: #282c34;
+    --card-border: #3e4451;
+    --text-primary: #abb2bf;
+    --text-secondary: #9da5b4;
+    --text-tertiary: #5c6370;
+    --accent-primary: #61afef;
+    --accent-primary-hover: #4fa6e8;
+    --accent-primary-text: #21252b;
+    --accent-secondary: #2c313a;
+    --accent-secondary-hover: #3e4451;
+    --btn-kb-bg: #98c379;
+    --btn-kb-bg-hover: #89b869;
+    --btn-ad-bg: #e06c75;
+    --btn-ad-bg-hover: #dc5d68;
+    --success: #98c379;
+    --danger: #e06c75;
+    --warning: #e5c07b;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --tooltip-bg: #abb2bf;
+    --tooltip-text: #21252b;
+    --gradient-bg: linear-gradient(135deg, var(--app-bg) 0%, #282c34 100%);
+}
+
+/* --- Gruvbox Dark Theme --- */
+.theme-gruvbox-dark {
+    --app-bg: #282828;
+    --card-bg: #3c3836;
+    --card-border: #504945;
+    --text-primary: #ebdbb2;
+    --text-secondary: #d5c4a1;
+    --text-tertiary: #a89984;
+    --accent-primary: #83a598;
+    --accent-primary-hover: #70969a;
+    --accent-primary-text: #282828;
+    --accent-secondary: #32302f;
+    --accent-secondary-hover: #3c3836;
+    --btn-kb-bg: #b8bb26;
+    --btn-kb-bg-hover: #a6a821;
+    --btn-ad-bg: #d3869b;
+    --btn-ad-bg-hover: #c07489;
+    --success: #b8bb26;
+    --danger: #fb4934;
+    --warning: #fabd2f;
+    --shadow-color: rgba(0, 0, 0, 0.6);
+    --tooltip-bg: #ebdbb2;
+    --tooltip-text: #282828;
+    --gradient-bg: linear-gradient(135deg, var(--app-bg) 0%, #3c3836 100%);
+}
+
+/* --- High Contrast Dark (Accessibility) --- */
+.theme-contrast-dark {
+    --app-bg: #000000;
+    --card-bg: #1a1a1a;
+    --card-border: #ffffff;
+    --text-primary: #ffffff;
+    --text-secondary: #cccccc;
+    --text-tertiary: #999999;
+    --accent-primary: #00ffff;
+    --accent-primary-hover: #00cccc;
+    --accent-primary-text: #000000;
+    --accent-secondary: #333333;
+    --accent-secondary-hover: #4a4a4a;
+    --btn-kb-bg: #00ff00;
+    --btn-kb-bg-hover: #00cc00;
+    --btn-ad-bg: #ffff00;
+    --btn-ad-bg-hover: #cccc00;
+    --success: #00ff00;
+    --danger: #ff0000;
+    --warning: #ffff00;
+    --shadow-color: rgba(255, 255, 255, 0.3);
+    --tooltip-bg: #ffffff;
+    --tooltip-text: #000000;
+    --gradient-bg: linear-gradient(135deg, var(--app-bg) 0%, #1a1a1a 100%);
+}
+
+/* --- Cyberpunk Theme (Futuristic) --- */
+.theme-cyberpunk {
+    --app-bg: #0a0e1a;
+    --card-bg: #1a1f33;
+    --card-border: #00ffff;
+    --text-primary: #00ffff;
+    --text-secondary: #66d9ef;
+    --text-tertiary: #8892bf;
+    --accent-primary: #ff006e;
+    --accent-primary-hover: #d9005b;
+    --accent-primary-text: #0a0e1a;
+    --accent-secondary: #131829;
+    --accent-secondary-hover: #1e2440;
+    --btn-kb-bg: #00ff41;
+    --btn-kb-bg-hover: #00cc34;
+    --btn-ad-bg: #ff0080;
+    --btn-ad-bg-hover: #cc0066;
+    --success: #00ff41;
+    --danger: #ff006e;
+    --warning: #ffff00;
+    --shadow-color: rgba(0, 255, 255, 0.2);
+    --tooltip-bg: #00ffff;
+    --tooltip-text: #0a0e1a;
+    --gradient-bg: linear-gradient(135deg, var(--app-bg) 0%, #1a1f33 100%);
+}
+
+/* --- Terminal Theme (For tech-savvy users) --- */
+.theme-terminal {
+    --app-bg: #000000;
+    --card-bg: #1e1e1e;
+    --card-border: #00ff00;
+    --text-primary: #00ff00;
+    --text-secondary: #00cc00;
+    --text-tertiary: #66ff66;
+    --accent-primary: #ffff00;
+    --accent-primary-hover: #cccc00;
+    --accent-primary-text: #000000;
+    --accent-secondary: #0a0a0a;
+    --accent-secondary-hover: #2a2a2a;
+    --btn-kb-bg: #00ffff;
+    --btn-kb-bg-hover: #00cccc;
+    --btn-ad-bg: #ff00ff;
+    --btn-ad-bg-hover: #cc00cc;
+    --success: #00ff00;
+    --danger: #ff0000;
+    --warning: #ffff00;
+    --shadow-color: rgba(0, 255, 0, 0.3);
+    --tooltip-bg: #00ff00;
+    --tooltip-text: #000000;
+    --gradient-bg: linear-gradient(135deg, var(--app-bg) 0%, #1e1e1e 100%);
+}

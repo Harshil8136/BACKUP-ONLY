@@ -1,0 +1,308 @@
+/**
+ * NOTES COMPONENT STYLES
+ * ==================
+ * UPDATED: Added new styles for the Composite Biller View, including
+ * rebranding notes and internal-use badges for enhanced clarity.
+ *
+ * This file contains all styles for the interactive notes system,
+ * including tabs, content panels, and new interactive components.
+ */
+
+/* Color variable definitions for the categories */
+:root {
+    --color-danger-bright: #DC3545;
+    --color-success-bright: #28A745;
+    --color-info-bright: #4A90E2;
+    --color-primary-bright: #357ABD;
+    --color-secondary-bright: #6c757d;
+}
+
+.theme-dark {
+    --color-danger-bright: #F85149;
+    --color-success-bright: #3FB950;
+    --color-info-bright: #58A6FF;
+    --color-primary-bright: #79C0FF;
+    --color-secondary-bright: #8b949e;
+}
+
+/* --- Main Notes Component Layout --- */
+#interactiveNotesContainer {
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--card-border);
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+}
+
+.notes-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.notes-tab-button {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--accent-secondary-hover);
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast) ease-out;
+    background-color: transparent;
+    color: var(--text-secondary);
+}
+
+.notes-content {
+    padding: 1.25rem;
+    border-radius: var(--radius-md);
+    border-left: 4px solid;
+    background-color: var(--accent-secondary); /* Default background */
+    margin-bottom: 1rem;
+}
+.notes-content:last-child {
+    margin-bottom: 0;
+}
+
+.notes-section {
+    margin-top: 1.5rem;
+}
+.notes-section h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-family: var(--font-family-headings);
+}
+
+.notes-content h4 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-family: var(--font-family-headings);
+    color: var(--text-primary);
+}
+
+.notes-content p, .notes-content ul, .notes-content ol {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.notes-content ul:last-child, .notes-content p:last-child {
+    margin-bottom: 0;
+}
+
+.notes-content ul, .notes-content ol {
+    padding-left: 1.25rem;
+}
+
+.notes-content a {
+    color: var(--accent-primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+.notes-content a:hover {
+    text-decoration: underline;
+}
+
+/* --- Tab & Border Color Coding --- */
+.color-danger { color: var(--color-danger-bright); }
+.color-danger.active, .notes-tab-button.color-danger:hover { background-color: var(--color-danger-bright); color: white; border-color: var(--color-danger-bright); }
+.color-border-danger { border-left-color: var(--color-danger-bright); }
+
+.color-success { color: var(--color-success-bright); }
+.color-success.active, .notes-tab-button.color-success:hover { background-color: var(--color-success-bright); color: white; border-color: var(--color-success-bright); }
+.color-border-success { border-left-color: var(--color-success-bright); }
+
+.color-info { color: var(--color-info-bright); }
+.color-info.active, .notes-tab-button.color-info:hover { background-color: var(--color-info-bright); color: white; border-color: var(--color-info-bright); }
+.color-border-info { border-left-color: var(--color-info-bright); }
+
+.color-primary { color: var(--color-primary-bright); }
+.color-primary.active, .notes-tab-button.color-primary:hover { background-color: var(--color-primary-bright); color: white; border-color: var(--color-primary-bright); }
+.color-border-primary { border-left-color: var(--color-primary-bright); }
+
+.color-secondary { color: var(--color-secondary-bright); }
+.color-secondary.active, .notes-tab-button.color-secondary:hover { background-color: var(--color-secondary-bright); color: white; border-color: var(--color-secondary-bright); }
+.color-border-secondary { border-left-color: var(--color-secondary-bright); }
+
+/* --- Dynamic Themed Backgrounds for Content Panels --- */
+.notes-content.color-border-danger { background-color: color-mix(in srgb, var(--card-bg) 85%, var(--color-danger-bright)); }
+.notes-content.color-border-success { background-color: color-mix(in srgb, var(--card-bg) 85%, var(--color-success-bright)); }
+.notes-content.color-border-info { background-color: color-mix(in srgb, var(--card-bg) 85%, var(--color-info-bright)); }
+.notes-content.color-border-primary { background-color: color-mix(in srgb, var(--card-bg) 85%, var(--color-primary-bright)); }
+.notes-content.color-border-secondary { background-color: color-mix(in srgb, var(--card-bg) 85%, var(--color-secondary-bright)); }
+
+
+/* --- Interactive Table Filters --- */
+.notes-filter-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+.notes-filter-btn {
+    padding: 0.4rem 0.9rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border-radius: 999px;
+    border: 1px solid var(--card-border);
+    background-color: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--transition-fast) ease-out;
+}
+.notes-filter-btn:hover {
+    background-color: var(--accent-secondary-hover);
+    color: var(--text-primary);
+}
+.notes-filter-btn.active {
+    background-color: var(--accent-primary);
+    color: var(--accent-primary-text);
+    border-color: var(--accent-primary);
+}
+.table-container tr.filtered-out {
+    display: none;
+}
+
+
+/* --- Accordion Styles --- */
+.accordion {
+    margin-bottom: 0.75rem;
+}
+.accordion-header {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: var(--accent-secondary-hover);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-md);
+    text-align: left;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: background-color var(--transition-fast) ease-out;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.accordion-header:hover {
+    background-color: color-mix(in srgb, var(--accent-secondary-hover) 80%, var(--text-primary));
+}
+.accordion-header::after {
+    content: '+';
+    font-size: 1.5rem;
+    font-weight: 300;
+    transition: transform var(--transition-speed) ease-out;
+}
+.accordion-header.active::after {
+    transform: rotate(45deg);
+}
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+    padding: 0 1rem;
+    background-color: transparent;
+}
+.accordion-content p:first-child,
+.accordion-content ol:first-child,
+.accordion-content ul:first-child {
+    padding-top: 1rem;
+}
+
+
+/* --- General Content Styling in Notes --- */
+.copyable-phone {
+    font-weight: 600;
+    cursor: pointer;
+    border-bottom: 2px dotted var(--text-tertiary);
+    transition: all var(--transition-fast) ease-out;
+}
+.copyable-phone:hover {
+    color: var(--accent-primary);
+    border-bottom-color: var(--accent-primary);
+}
+.copyable-phone.copied {
+    color: var(--success) !important;
+    border-bottom-color: var(--success) !important;
+}
+
+.table-container {
+    overflow-x: auto;
+    margin: 1.25rem 0;
+}
+.notes-content table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+.notes-content th, .notes-content td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--card-border);
+    vertical-align: middle;
+}
+.notes-content thead th {
+    font-weight: 700;
+    background-color: var(--accent-secondary-hover);
+}
+.notes-content td strong {
+    display: block;
+    font-size: 1.1em;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+.notes-content td small {
+    display: block;
+    color: var(--text-secondary);
+    line-height: 1.3;
+}
+
+.payment-logo {
+    display: inline-block;
+    width: 30px;
+    height: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    margin: 0 2px;
+}
+.payment-logo.visa { background-image: url('../assets/svg/visa.svg'); }
+.payment-logo.mastercard { background-image: url('../assets/svg/mastercard.svg'); }
+.payment-logo.discover { background-image: url('../assets/svg/discover.svg'); }
+.payment-logo.amex { background-image: url('../assets/svg/amex.svg'); }
+.payment-logo.ach { background-image: url('../assets/svg/ach.svg'); }
+.payment-logo.paypal { background-image: url('../assets/svg/paypal.svg'); }
+.payment-logo.paypal-credit { background-image: url('../assets/svg/paypal-credit.svg'); }
+.payment-logo.amazon-pay { background-image: url('../assets/svg/amazon-pay.svg'); }
+.payment-logo.venmo { background-image: url('../assets/svg/venmo.svg'); }
+
+
+/* --- Composite Biller View Styles --- */
+.notes-content h4 .fa-solid {
+    margin-right: 0.5rem;
+    color: var(--color-danger-bright);
+}
+
+.rebranding-note {
+    background-color: color-mix(in srgb, var(--accent-primary) 15%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent-primary) 30%, transparent);
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.internal-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.1rem 0.5rem;
+    border-radius: 999px;
+    background-color: var(--accent-secondary-hover);
+    color: var(--text-secondary);
+    vertical-align: middle;
+    margin-left: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}

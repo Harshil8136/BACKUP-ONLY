@@ -1,0 +1,88 @@
+/**
+ * THEME & DESIGN TOKENS (CORE)
+ * ==================
+ * This file contains the foundational design system for the application,
+ * structured as a series of design tokens. It defines the default Light
+ * theme palette and the structural styles (spacing, radius, etc.) that
+ * all other themes and components use.
+ */
+
+/* --- :root defines the default Light Theme and Global Tokens --- */
+:root {
+  /* --- 1. Foundational Design Tokens --- */
+
+  /* Spacing (4-point scale) */
+  --space-2xs: 2px;
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 24px;
+  --space-2xl: 32px;
+  --space-3xl: 48px;
+
+  /* Radius (Consistent rounding scheme) */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-2xl: 24px;
+  --radius-pill: 9999px;
+
+  /* Elevation (Soft, consistent shadows) */
+  --elev-0: none;
+  --elev-1: 0 4px 12px rgba(0,0,0,.08);
+  --elev-2: 0 8px 24px rgba(0,0,0,.12);
+  --elev-3: 0 12px 32px rgba(0,0,0,.16);
+
+  /* Motion (GPU-friendly animations) */
+  --motion-duration-sm: 160ms;
+  --motion-duration-md: 220ms;
+  --motion-duration-lg: 320ms;
+  --motion-ease-spring: cubic-bezier(.2, .8, .2, 1);
+  
+  /* --- 2. Base Font & Sizing --- */
+  /* The base font size is set on the <html> tag by the FontSize feature in JS. */
+  --font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-family-headings: 'Montserrat', sans-serif;
+
+  /* --- 3. Transition Aliases (for compatibility) --- */
+  --transition-speed: var(--motion-duration-md);
+  --transition-fast: var(--motion-duration-sm);
+
+  /* --- 4. Default Light Theme Palette --- */
+  --app-bg: #F0F2F5;
+  --card-bg: #FFFFFF;
+  --card-border: #D9D9D9;
+  --text-primary: #1F2937;
+  --text-secondary: #4B5563;
+  --text-tertiary: #9CA3AF;
+  --accent-primary: #4A90E2;
+  --accent-primary-hover: #357ABD;
+  --accent-primary-text: #FFFFFF;
+  --accent-secondary: #F4F5F7;
+  --accent-secondary-hover: #E9ECEF;
+  --success: #28A745;
+  --danger: #DC3545;
+  --warning: #FFC107;
+  --tooltip-bg: #1F2937;
+  --tooltip-text: #FFFFFF;
+  --gradient-bg: linear-gradient(135deg, var(--app-bg) 0%, #E9ECEF 100%);
+  
+  /* Button Brand Colors */
+  --btn-kb-bg: #7092bf;
+  --btn-kb-bg-hover: #5a7fa9;
+  --btn-ad-bg: #0db0ab;
+  --btn-ad-bg-hover: #0a8d88;
+  
+  /* Shadow Alias (for compatibility) */
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* --- Accessibility: Reduce Motion --- */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-duration-sm: 0ms;
+    --motion-duration-md: 0ms;
+    --motion-duration-lg: 0ms;
+  }
+}

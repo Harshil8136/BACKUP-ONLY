@@ -1,0 +1,277 @@
+/**
+ * NOTES COMPONENT STYLES
+ * ==================
+ * This file contains all styles for the interactive notes system.
+ *
+ * UPDATED: Refactored to use global design tokens for colors and spacing.
+ * Implemented scoped font sizing to work with the new font controls.
+ */
+
+/* --- Main Notes Component Layout --- */
+#interactiveNotesContainer {
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--card-border);
+    margin-top: var(--space-xl);
+    padding-top: var(--space-xl);
+}
+
+.notes-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+}
+
+.notes-tab-button {
+    padding: var(--space-sm) var(--space-lg);
+    border: 1px solid var(--accent-secondary-hover);
+    border-radius: var(--radius-pill);
+    font-size: calc(0.9rem * var(--biller-font-size-multiplier));
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast) ease-out;
+    background-color: transparent;
+    color: var(--text-secondary);
+}
+
+.notes-content {
+    padding: var(--space-lg);
+    border-radius: var(--radius-md);
+    border-left: 4px solid;
+    margin-bottom: var(--space-lg);
+}
+.notes-content:last-child {
+    margin-bottom: 0;
+}
+
+.notes-section {
+    margin-top: var(--space-xl);
+}
+.notes-section h3 {
+    font-size: calc(1.25rem * var(--biller-font-size-multiplier));
+    margin-top: 0;
+    margin-bottom: var(--space-md);
+    font-family: var(--font-family-headings);
+}
+
+.notes-content h4 {
+    font-size: calc(1.1rem * var(--biller-font-size-multiplier));
+    margin-top: 0;
+    margin-bottom: var(--space-md);
+    font-family: var(--font-family-headings);
+    color: var(--text-primary);
+}
+
+.notes-content p, .notes-content ul, .notes-content ol {
+    margin-bottom: var(--space-lg);
+    line-height: 1.6;
+    font-size: calc(0.95rem * var(--biller-font-size-multiplier));
+}
+
+.notes-content ul:last-child, .notes-content p:last-child {
+    margin-bottom: 0;
+}
+
+.notes-content ul, .notes-content ol {
+    padding-left: 20px;
+}
+
+.notes-content a {
+    color: var(--accent-primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+.notes-content a:hover {
+    text-decoration: underline;
+}
+
+/* --- Tab & Border Color Coding (Using Global Theme Variables) --- */
+.color-danger { color: var(--danger); }
+.color-danger.active, .notes-tab-button.color-danger:hover { background-color: var(--danger); color: white; border-color: var(--danger); }
+.color-border-danger { border-left-color: var(--danger); }
+
+.color-success { color: var(--success); }
+.color-success.active, .notes-tab-button.color-success:hover { background-color: var(--success); color: white; border-color: var(--success); }
+.color-border-success { border-left-color: var(--success); }
+
+.color-info { color: var(--accent-primary); } /* Using accent-primary for info */
+.color-info.active, .notes-tab-button.color-info:hover { background-color: var(--accent-primary); color: white; border-color: var(--accent-primary); }
+.color-border-info { border-left-color: var(--accent-primary); }
+
+.color-primary { color: var(--btn-kb-bg); } /* Using a button color for primary */
+.color-primary.active, .notes-tab-button.color-primary:hover { background-color: var(--btn-kb-bg); color: white; border-color: var(--btn-kb-bg); }
+.color-border-primary { border-left-color: var(--btn-kb-bg); }
+
+.color-secondary { color: var(--text-secondary); }
+.color-secondary.active, .notes-tab-button.color-secondary:hover { background-color: var(--text-secondary); color: white; border-color: var(--text-secondary); }
+.color-border-secondary { border-left-color: var(--text-secondary); }
+
+/* --- Dynamic Themed Backgrounds for Content Panels --- */
+.notes-content.color-border-danger { background-color: color-mix(in srgb, var(--card-bg) 85%, var(--danger)); }
+.notes-content.color-border-success { background-color: color-mix(in srgb, var(--card-bg) 85%, var(--success)); }
+.notes-content.color-border-info { background-color: color-mix(in srgb, var(--card-bg) 85%, var(--accent-primary)); }
+.notes-content.color-border-primary { background-color: color-mix(in srgb, var(--card-bg) 85%, var(--btn-kb-bg)); }
+.notes-content.color-border-secondary { background-color: color-mix(in srgb, var(--card-bg) 85%, var(--text-secondary)); }
+
+
+/* --- Interactive Table Filters --- */
+.notes-filter-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+}
+.notes-filter-btn {
+    padding: 6px var(--space-md);
+    font-size: calc(0.85rem * var(--biller-font-size-multiplier));
+    font-weight: 500;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--card-border);
+    background-color: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--transition-fast) ease-out;
+}
+.notes-filter-btn:hover {
+    background-color: var(--accent-secondary-hover);
+    color: var(--text-primary);
+}
+.notes-filter-btn.active {
+    background-color: var(--accent-primary);
+    color: var(--accent-primary-text);
+    border-color: var(--accent-primary);
+}
+.table-container tr.filtered-out {
+    display: none;
+}
+
+
+/* --- Accordion Styles --- */
+.accordion {
+    margin-bottom: var(--space-md);
+}
+.accordion-header {
+    width: 100%;
+    padding: var(--space-md) var(--space-lg);
+    background-color: var(--accent-secondary-hover);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-md);
+    text-align: left;
+    font-weight: 600;
+    font-size: calc(1rem * var(--biller-font-size-multiplier));
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: background-color var(--transition-fast) ease-out;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.accordion-header:hover {
+    background-color: color-mix(in srgb, var(--accent-secondary-hover) 80%, var(--text-primary));
+}
+.accordion-header::after {
+    content: '+';
+    font-size: 1.5rem;
+    font-weight: 300;
+    transition: transform var(--transition-speed) ease-out;
+}
+.accordion-header.active::after {
+    transform: rotate(45deg);
+}
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+    padding: 0 var(--space-lg);
+    background-color: transparent;
+}
+.accordion-content p:first-child,
+.accordion-content ol:first-child,
+.accordion-content ul:first-child {
+    padding-top: var(--space-lg);
+}
+
+
+/* --- General Content Styling in Notes --- */
+.copyable-phone {
+    font-weight: 600;
+    cursor: pointer;
+    border-bottom: 2px dotted var(--text-tertiary);
+    transition: all var(--transition-fast) ease-out;
+}
+.copyable-phone:hover {
+    color: var(--accent-primary);
+    border-bottom-color: var(--accent-primary);
+}
+.copyable-phone.copied {
+    color: var(--success) !important;
+    border-bottom-color: var(--success) !important;
+}
+
+.table-container {
+    overflow-x: auto;
+    margin: var(--space-lg) 0;
+}
+.notes-content table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: calc(0.9rem * var(--biller-font-size-multiplier));
+}
+.notes-content th, .notes-content td {
+    padding: var(--space-md);
+    text-align: left;
+    border-bottom: 1px solid var(--card-border);
+    vertical-align: middle;
+}
+.notes-content thead th {
+    font-weight: 700;
+    background-color: var(--accent-secondary-hover);
+}
+.notes-content td strong {
+    display: block;
+    font-size: 1.1em;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-xs);
+}
+.notes-content td small {
+    display: block;
+    color: var(--text-secondary);
+    line-height: 1.3;
+}
+
+.payment-logo {
+    display: inline-block;
+    width: 30px;
+    height: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    margin: 0 2px;
+}
+.payment-logo.visa { background-image: url('../assets/svg/visa.svg'); }
+.payment-logo.mastercard { background-image: url('../assets/svg/mastercard.svg'); }
+.payment-logo.discover { background-image: url('../assets/svg/discover.svg'); }
+.payment-logo.amex { background-image: url('../assets/svg/amex.svg'); }
+.payment-logo.ach { background-image: url('../assets/svg/ach.svg'); }
+.payment-logo.paypal { background-image: url('../assets/svg/paypal.svg'); }
+.payment-logo.paypal-credit { background-image: url('../assets/svg/paypal-credit.svg'); }
+.payment-logo.amazon-pay { background-image: url('../assets/svg/amazon-pay.svg'); }
+.payment-logo.venmo { background-image: url('../assets/svg/venmo.svg'); }
+
+
+/* --- Composite Biller View Styles --- */
+.notes-content h4 .fa-solid {
+    margin-right: var(--space-sm);
+    color: var(--danger);
+}
+
+.rebranding-note {
+    background-color: color-mix(in srgb, var(--accent-primary) 15%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent-primary) 30%, transparent);
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--radius-md);
+    font-size: calc(0.9rem * var(--biller-font-size-multiplier));
+    margin-bottom: var(--space-lg);
+}

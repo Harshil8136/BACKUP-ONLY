@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    
+    <title>Ultimate Biller Hub</title>
+    
+    <link rel="stylesheet" href="./src/css/theme.css">
+    <link rel="stylesheet" href="./src/css/themes.css">
+    <link rel="stylesheet" href="./src/css/styles.css">
+    <link rel="stylesheet" href="./src/css/search.css">
+    <link rel="stylesheet" href="./src/css/components.css">
+    <link rel="stylesheet" href="./src/css/notes.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <header class="app-header" role="banner">
+        <h1 class="app-title">Ultimate Biller Hub</h1>
+        <div class="header-actions">
+            <div class="popover-wrapper">
+                <button id="favoritesPopoverBtn" class="icon-btn" aria-label="Show Favorites" data-tooltip="Favorites" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa-solid fa-star"></i>
+                </button>
+                <div id="favoritesPopover" class="popover" hidden>
+                    <div class="popover-header">Your Favorites</div>
+                    <div class="popover-content no-horizontal-scroll">
+                        <ul id="favoritesList" role="list"></ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="popover-wrapper">
+                <button id="areaLookupPopoverBtn" class="icon-btn" aria-label="Open Area Lookup" data-tooltip="Area Lookup" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                </button>
+                <div id="areaLookupPopover" class="popover" hidden>
+                    <div class="popover-header">Area Lookup</div>
+                    <div class="popover-content">
+                         <div id="areaLookupWrapper" class="lookup-wrapper">
+                            <input type="tel" id="areaLookupInput" class="menu-input" placeholder="Enter 3-digit area code..." aria-label="Area code input" autocomplete="off" maxlength="3">
+                            <div id="areaLookupResultsBox" class="location-results-box" hidden></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button id="directoryBtn" class="icon-btn" aria-label="Open Biller Directory" data-tooltip="Biller Directory" data-shortcut="D"><i class="fa-solid fa-book-bookmark"></i></button>
+            <button id="toolsBtn" class="icon-btn" aria-label="Open Workplace Tools" data-tooltip="Workplace Tools" data-shortcut="W"><i class="fa-solid fa-toolbox"></i></button>
+
+            <div class="popover-wrapper">
+                <button id="themePopoverBtn" class="icon-btn" aria-label="Select Theme" data-tooltip="Themes" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa-solid fa-palette"></i>
+                </button>
+                <div id="themePopover" class="popover no-horizontal-scroll" hidden>
+                    <div class="popover-header">Select Theme</div>
+                    <div class="popover-content">
+                        <div id="themeSelector">
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="popover-wrapper">
+                <button id="settingsBtn" class="icon-btn" aria-label="Open Settings" aria-haspopup="true" aria-expanded="false" data-tooltip="Settings">
+                    <i class="fa-solid fa-cog"></i>
+                </button>
+                <div id="settingsPopover" class="popover" hidden>
+                    <div class="popover-header">Settings</div>
+                    <div class="popover-content">
+                        <div class="font-control">
+                            <span class="switch-label">Biller Font Size</span>
+                            <div>
+                                <button id="decreaseFontBtn" class="font-btn" aria-label="Decrease font size">-</button>
+                                <button id="increaseFontBtn" class="font-btn" style="margin-left: 0.5rem;" aria-label="Increase font size">+</button>
+                            </div>
+                        </div>
+                        <hr style="border-color: var(--card-border); margin: 0.5rem 0;">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="toggleSuggestions" checked>
+                            <span class="switch-label">Enable Suggestions</span>
+                            <div class="switch-track"><div class="switch-handle"></div></div>
+                        </label>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="toggleCompactDensity">
+                            <span class="switch-label">Compact Density</span>
+                            <div class="switch-track"><div class="switch-handle"></div></div>
+                        </label>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="toggleAnalytics" checked>
+                            <span class="switch-label">Show Analytics</span>
+                            <div class="switch-track"><div class="switch-handle"></div></div>
+                        </label>
+                        <hr style="border-color: var(--card-border); margin: 0.5rem 0;">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="toggleDebugLog">
+                            <span class="switch-label">Show Debug Log</span>
+                            <div class="switch-track"><div class="switch-handle"></div></div>
+                        </label>
+                        <hr style="border-color: var(--card-border); margin: 0.5rem 0;">
+                        <div>
+                            <button id="resetCacheBtn" class="btn-reset">Clear Cache & Reset</button>
+                            <p class="reset-note">Clears all saved data and reloads the app.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="app-main" role="main">
+        <div id="notificationBanner" class="notification-banner" role="alert" hidden></div>
+
+        <section class="central-search-container" aria-labelledby="search-heading">
+            <h2 id="search-heading" class="sr-only">Search for Billers</h2>
+            <div id="searchWrapper" class="search-wrapper" role="combobox" aria-haspopup="listbox" aria-expanded="false">
+                <i class="fa-solid fa-magnifying-glass search-icon" aria-hidden="true"></i>
+                <input type="text" id="searchInput" class="search-input" placeholder="Loading data..." aria-autocomplete="list" aria-controls="suggestionsList" aria-label="Search input" disabled>
+                <ul id="suggestionsList" class="suggestions-list" role="listbox" hidden></ul>
+            </div>
+        </section>
+
+        <div class="main-content-grid">
+            <div class="content-primary">
+                <section id="billerCard" class="biller-card" aria-live="polite" hidden></section>
+                <section id="locationCard" class="biller-card" aria-live="polite" hidden></section>
+            </div>
+            <aside class="content-secondary" aria-labelledby="sidebar-heading">
+                <h2 id="sidebar-heading" class="sr-only">Sidebar Tools and Information</h2>
+                <section id="analyticsDiv" class="analytics-dashboard" aria-labelledby="analytics-heading">
+                    <h3 id="analytics-heading">Usage Analytics</h3>
+                    <canvas id="analyticsChart"></canvas>
+                </section>
+            </aside>
+        </div>
+    </main>
+
+    <div id="directoryModal" class="modal-overlay" hidden>
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="directory-header">
+            <div class="modal-header">
+                <h2 id="directory-header">Biller Directory</h2>
+                <button id="directoryCloseBtn" class="icon-btn" aria-label="Close Directory"><i class="fa-solid fa-times"></i></button>
+            </div>
+            <div class="modal-body"></div>
+        </div>
+    </div>
+
+    <aside id="toolsPanel" class="drawer" role="complementary" aria-labelledby="tools-header"></aside>
+    <template id="toolsPanelTemplate">
+        <div class="drawer-header">
+            <h2 id="tools-header" class="drawer-title">Workplace Tools</h2>
+            <button id="toolsCloseBtn" class="icon-btn" aria-label="Close Tools Panel"><i class="fa-solid fa-times"></i></button>
+        </div>
+        <div class="drawer-content">
+            <section aria-labelledby="kb-heading">
+                <h3 id="kb-heading">KB Articles</h3>
+                <div class="search-wrapper">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="toolsKbSearch" class="menu-input" placeholder="Search articles...">
+                </div>
+                <ul id="kbList" class="kb-list"></ul>
+            </section>
+        </div>
+    </template>
+    
+    <div id="debugLog" class="debug-log" hidden></div>
+
+    <script src="./src/js/lib/fuse.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.1/gsap.min.js"></script>
+    
+    <script src="./src/js/data/theme-data.js"></script>
+    <script src="./src/js/data/kb-articles.js"></script>
+    <script src="./src/js/data/locations.js"></script>
+    <script src="./src/js/data/biller-data-all.js"></script> 
+    <script src="./src/live/AETX.js"></script>
+    <script src="./src/live/AWK.js"></script>
+    <script src="./src/live/BGE.js"></script>
+    <script src="./src/live/CEMI.js"></script>
+    <script src="./src/live/CEB.js"></script>
+    <script src="./src/live/COMD.js"></script>
+    <script src="./src/live/DCN3.js"></script>
+    <script src="./src/live/DNE.js"></script>
+    <script src="./src/live/DUQL.js"></script>
+    <script src="./src/live/HYD1.js"></script>
+    <script src="./src/live/NSRC.js"></script>
+    <script src="./src/live/PAC.js"></script>
+    <script src="./src/live/PSE.js"></script>
+    <script src="./src/live/TGXH.js"></script>
+    
+    <script src="./src/js/core/utils.js"></script>
+    <script src="./src/js/core/db.js"></script>
+    <script src="./src/js/core/data-helpers.js"></script>
+    <script src="./src/js/core/anim.js"></script>
+    
+    <script src="./src/js/core/virtual-list.js"></script>
+    <script src="./src/js/core/app-core.js"></script>
+    <script src="./src/js/features/theme-feature.js"></script>
+    <script src="./src/js/features/location-feature.js"></script>
+    <script src="./src/js/features/notes-feature.js"></script>
+    <script src="./src/js/features/app-features.js"></script>
+    
+    <script src="./src/js/ui/ui-core.js"></script>
+    <script src="./src/js/ui/ui-notes.js"></script>
+    <script src="./src/js/ui/ui-components-stable.js"></script>
+    <script src="./src/js/ui/ui-popovers.js"></script>
+    
+    <script src="./src/js/main/app-main.js"></script>
+    
+</body>
+</html>

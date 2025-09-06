@@ -1,0 +1,253 @@
+/**
+ * CORE COMPONENT STYLES
+ * ==================
+ * This file contains styles for the base layout and core components.
+ * It consumes the design tokens defined in theme.css to ensure a consistent
+ * and maintainable visual system.
+ *
+ * UPDATED: Implemented scoped font sizing for the .biller-card content.
+ */
+
+/* --- BASE & LAYOUT --- */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: var(--font-family);
+    background: var(--gradient-bg);
+    color: var(--text-primary);
+    font-size: 1rem; /* All non-biller-card font sizes use 'rem' to be scalable */
+    transition: background-color var(--transition-speed) ease-out, color var(--transition-speed) ease-out;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    --biller-font-size-multiplier: 1; /* This is controlled by JS for scoped font scaling */
+}
+
+.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-md) var(--space-xl);
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--card-border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--elev-2);
+}
+
+.app-title { font-family: var(--font-family-headings); font-size: 1.25rem; margin: 0; font-weight: 700; }
+.header-actions { display: flex; align-items: center; gap: var(--space-sm); }
+
+.app-main { padding: var(--space-xl); max-width: 1600px; margin: 0 auto; }
+.main-content-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-xl); align-items: flex-start; }
+@media (min-width: 960px) {
+    .main-content-grid { grid-template-columns: 3fr 1fr; }
+}
+
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; }
+
+
+/* --- UNIVERSAL FOCUS & INTERACTIONS --- */
+:focus-visible {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent-primary) 25%, transparent) !important;
+}
+
+.icon-btn:active, .btn-biller-card:active { transform: scale(0.95); }
+
+
+/* --- NOTIFICATION BANNER --- */
+.notification-banner {
+    padding: var(--space-lg);
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    margin-bottom: var(--space-xl);
+    border: 1px solid transparent;
+}
+.notification-banner.is-error { background-color: var(--danger); color: white; }
+.notification-banner.is-success { background-color: var(--success); color: white; }
+
+
+/* --- CORE COMPONENTS (HEADER, SEARCH, BILLER CARD) --- */
+.icon-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color var(--transition-fast) ease-out, color var(--transition-fast) ease-out;
+}
+.icon-btn:hover { background-color: var(--accent-secondary); color: var(--text-primary); }
+
+/* Central Search Styles */
+.central-search-container {
+    display: flex;
+    justify-content: center;
+    padding-bottom: var(--space-xl);
+}
+.central-search-container .search-wrapper {
+    max-width: 720px;
+    width: 100%;
+}
+.search-wrapper { position: relative; }
+
+.search-wrapper .search-icon {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    color: var(--text-tertiary);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.search-input {
+    width: 100%;
+    padding: var(--space-lg) var(--space-lg) var(--space-lg) 56px;
+    font-size: 1.25rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--card-border);
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+    box-shadow: var(--elev-1);
+    transition: border-color var(--transition-speed) ease-out, box-shadow var(--transition-speed) ease-out;
+}
+
+/* Biller & Location Cards */
+.biller-card { 
+    background-color: var(--card-bg); 
+    border: 1px solid var(--card-border); 
+    border-radius: var(--radius-md); 
+    padding: var(--space-xl); 
+    will-change: transform, box-shadow; /* Performance optimization for hover */
+    transition: transform var(--transition-speed) var(--motion-ease-spring), box-shadow var(--transition-speed) var(--motion-ease-spring);
+}
+.biller-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--elev-2);
+}
+.card-header { 
+    display: flex; 
+    flex-wrap: wrap;
+    align-items: center; 
+    justify-content: space-between; 
+    gap: var(--space-sm) var(--space-lg); 
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid var(--card-border);
+}
+.card-title-group { display: flex; align-items: center; gap: var(--space-md); }
+.card-title { 
+    font-family: var(--font-family-headings);
+    font-size: calc(1.75rem * var(--biller-font-size-multiplier));
+    font-weight: 700;
+    margin: 0;
+}
+.card-header-meta { display: flex; align-items: center; gap: var(--space-md); }
+.payment-type-tag, .card-status { 
+    padding: var(--space-xs) var(--space-md); 
+    border-radius: var(--radius-pill); 
+    font-size: calc(0.8rem * var(--biller-font-size-multiplier));
+    font-weight: 500; 
+    white-space: nowrap;
+    background-color: var(--accent-secondary);
+    color: var(--text-secondary);
+}
+.card-status.is-live { background-color: var(--success); color: white; }
+.card-status.is-offline { background-color: var(--danger); color: white; }
+
+.biller-action-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+    margin: 20px 0;
+}
+.action-bar-buttons { display: flex; flex-wrap: wrap; gap: var(--space-md); }
+.action-bar-contacts { display: flex; flex-wrap: wrap; gap: var(--space-lg) var(--space-xl); align-items: center; }
+
+/* Styles for data-driven contact fields */
+.quick-link-item { display: flex; flex-direction: column; gap: var(--space-xs); }
+.quick-link-item strong { font-size: calc(0.8rem * var(--biller-font-size-multiplier)); color: var(--text-secondary); font-weight: 600; }
+.quick-link-item.non-copyable span { font-style: italic; color: var(--text-tertiary); }
+.copyable-field {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    background-color: var(--accent-secondary);
+    padding: 6px 6px 6px var(--space-md);
+    border-radius: var(--radius-md);
+}
+.copyable-field span { font-weight: 600; color: var(--text-primary); font-size: calc(1rem * var(--biller-font-size-multiplier)); }
+.icon-btn-copy { width: 32px; height: 32px; font-size: 0.9rem; }
+.icon-btn-copy.is-copied { color: var(--success); }
+
+.internal-badge {
+    display: inline-block;
+    font-size: calc(0.7rem * var(--biller-font-size-multiplier));
+    font-weight: 700;
+    padding: var(--space-2xs) var(--space-sm);
+    border-radius: var(--radius-pill);
+    background-color: var(--accent-secondary-hover);
+    color: var(--text-secondary);
+    vertical-align: middle;
+    margin-left: var(--space-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.contact-note-danger {
+    display: block;
+    font-size: calc(0.8rem * var(--biller-font-size-multiplier));
+    font-weight: 600;
+    color: var(--danger);
+    margin-top: var(--space-xs);
+}
+
+.btn-biller-card { 
+    padding: 10px var(--space-lg);
+    border: 1px solid; 
+    border-radius: var(--radius-md); 
+    font-size: calc(0.9rem * var(--biller-font-size-multiplier));
+    font-weight: 600; 
+    cursor: pointer; 
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center; 
+    gap: var(--space-sm); 
+    transition: background-color var(--transition-speed) ease-out, border-color var(--transition-speed) ease-out, color var(--transition-speed) ease-out; 
+    text-decoration: none; 
+}
+.btn-kb { background-color: var(--btn-kb-bg); color: white; border-color: var(--btn-kb-bg); }
+.btn-kb:hover { background-color: var(--btn-kb-bg-hover); border-color: var(--btn-kb-bg-hover); }
+.btn-ad { background-color: var(--btn-ad-bg); color: white; border-color: var(--btn-ad-bg); }
+.btn-ad:hover { background-color: var(--btn-ad-bg-hover); border-color: var(--btn-ad-bg-hover); color: white; }
+
+.card-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+
+
+/* --- RESPONSIVENESS (Core Components) --- */
+@media (max-width: 640px) {
+    .app-main { padding: var(--space-lg); }
+    .search-input { font-size: 1rem; }
+    .card-header { flex-direction: column; align-items: flex-start; gap: var(--space-sm); }
+    .card-title { font-size: calc(1.25rem * var(--biller-font-size-multiplier)); }
+    .biller-action-bar { flex-direction: column; align-items: flex-start; }
+}
+
+/* --- COMPACT DENSITY MODE (Core Components) --- */
+body.density-compact .app-main { padding: var(--space-lg) var(--space-xl); }
+body.density-compact .biller-card { padding: var(--space-lg); }
+body.density-compact .card-header { padding-bottom: var(--space-md); }
+body.density-compact .card-title { font-size: calc(1.5rem * var(--biller-font-size-multiplier)); }
+body.density-compact .search-input { padding-top: var(--space-md); padding-bottom: var(--space-md); font-size: 1.1rem; }
+body.density-compact .biller-action-bar { margin: var(--space-lg) 0; }
+body.density-compact .btn-biller-card { padding: var(--space-sm) var(--space-lg); font-size: calc(0.85rem * var(--biller-font-size-multiplier)); }
